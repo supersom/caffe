@@ -4,7 +4,8 @@ Classifier is an image classifier specialization of Net.
 """
 
 import numpy as np
-
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import caffe
 
 
@@ -75,6 +76,9 @@ class Classifier(caffe.Net):
                 self.crop_dims / 2.0
             ])
             input_ = input_[:, crop[0]:crop[2], crop[1]:crop[3], :]
+            
+#        plt.imshow(np.tile(input_[0],(1,1,3/inputs[0].shape[2])))
+#        plt.show()            
 
         # Classify
         caffe_in = np.zeros(np.array(input_.shape)[[0, 3, 1, 2]],
